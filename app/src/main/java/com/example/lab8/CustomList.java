@@ -19,7 +19,7 @@ public class CustomList implements CustomAdapterInterface {
 
     @Override
     public int getCount() {
-
+        return customAdapter.getCount();
     }
 
     @Override
