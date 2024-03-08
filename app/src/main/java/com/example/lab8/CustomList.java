@@ -32,10 +32,7 @@ public class CustomList implements CustomAdapterInterface {
         return customAdapter.hasCity(city);
     }
 
-    @Override
-    public void deleteCity(City city) {
 
-    }
 
     @Override
     public void notifyDataSetChanged() {
