@@ -29,7 +29,7 @@ public class CustomList implements CustomAdapterInterface {
 
     @Override
     public boolean hasCity(City city) {
-
+        return customAdapter.hasCity(city);
     }
 
     @Override
