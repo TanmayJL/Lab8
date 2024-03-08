@@ -34,7 +34,7 @@ public class CustomList implements CustomAdapterInterface {
 
     @Override
     public void deleteCity(City city) {
-        customAdapter.deleteCity(city);
+
     }
 
     @Override
