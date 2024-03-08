@@ -1,65 +1,48 @@
 package com.example.lab8;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import java.util.List;
 
-import java.util.ArrayList;
+public class CustomList implements CustomAdapterInterface {
 
-public class CustomList extends ArrayAdapter<City> {
+    private CustomAdapter customAdapter;
+    private List<City> cities;
+    private CityAdapterListener listener;
 
-    private ArrayList<City> cities;
-    private Context context;
-
-    public CustomList(Context context, ArrayList<City> cities) {
-        super(context, 0, cities);
+    public CustomList(Context context, List<City> cities, CityAdapterListener listener) {
         this.cities = cities;
-        this.context = context;
+        this.listener = listener;
+        customAdapter = new CustomAdapter(context, cities, listener);
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        View view = convertView;
-
-        if(view == null){
-            view = LayoutInflater.from(context).inflate(R.layout.content, parent,false);
-        }
-
-        City city = cities.get(position);
-
-        TextView cityName = view.findViewById(R.id.city_text);
-        TextView provinceName = view.findViewById(R.id.province_text);
-
-        cityName.setText(city.getCityName());
-        provinceName.setText(city.getProvinceName());
-
-        return view;
-
+    public int getCount() {
+        return customAdapter.getCount();
     }
 
-    /**
-     * this gets size of the list
-     * @return
-     */
-    public int getCount(){
-        return cities.size();
-    }
-    /**
-     * this adds a city object to the list
-     *for the first phase it will be
-     empty * @param city
-     */
-    public void addCity(City city){
-        cities.add(city);
-        notifyDataSetChanged();
+    @Override
+    public void addCity(City city) {
+        customAdapter.addCity(city);
     }
 
+    @Override
+    public boolean hasCity(City city) {
+        return customAdapter.hasCity(city);
+    }
+
+    @Override
+    public void deleteCity(City city) {
+        customAdapter.deleteCity(city);
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        customAdapter.notifyDataSetChanged();
+    }
+
+    public ArrayAdapter<City> getAdapter() {
+        return customAdapter;
+    }
 }

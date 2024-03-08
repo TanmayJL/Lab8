@@ -8,9 +8,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CityAdapterListener {
     // Declare the variables so that you will be able to reference it later.
     ListView cityList;
+    CustomList customList;
     ArrayAdapter<City> cityAdapter;
     ArrayList<City> cityDataList;
 
@@ -31,8 +32,13 @@ public class MainActivity extends AppCompatActivity {
         cityDataList.add(new City("Waterloo","ON"));
 
 
-        cityAdapter = new CustomList(this,cityDataList);
-        cityList.setAdapter(cityAdapter);
+        customList = new CustomList(this,cityDataList,this);
+        cityList.setAdapter(customList.getAdapter());
 
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        customList.notifyDataSetChanged();
     }
 }
