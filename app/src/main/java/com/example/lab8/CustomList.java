@@ -29,12 +29,12 @@ public class CustomList implements CustomAdapterInterface {
 
     @Override
     public boolean hasCity(City city) {
-        return customAdapter.hasCity(city);
+
     }
 
     @Override
     public void deleteCity(City city) {
-        customAdapter.deleteCity(city);
+
     }
 
     @Override
